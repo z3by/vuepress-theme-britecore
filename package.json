@@ -1,13 +1,28 @@
 {
-  "name": "vuepress-bc-theme",
+  "name": "vuepress-theme-britecore",
   "version": "1.0.0",
   "description": "Vuepress docs theme using BriteCore Design System",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "enhancedAppFile.js",
+    "noopModule.js",
+    "styles",
+    "utils",
+    "layouts",
+    "global-components",
+    "components"
+  ],
   "scripts": {
     "example:dev": "vuepress dev ./example/docs/",
     "example:build": "vuepress build ./example/docs/"
   },
-  "keywords": [],
+  "keywords": [
+    "vuepress",
+    "vuepress-theme",
+    "vuepress-docs",
+    "vue"
+  ],
   "author": {
     "name": "Ahmad Mostafa",
     "url": "https://ahmadmostafa.com/",
