@@ -4,7 +4,8 @@
   "description": "Vuepress docs theme using BriteCore Design System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "example:dev": "vuepress dev ./example/docs/",
+    "example:build": "vuepress build ./example/docs/"
   },
   "keywords": [],
   "author": {
