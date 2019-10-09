@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "example:dev": "vuepress dev ./example/docs/",
-    "example:build": "vuepress build ./example/docs/"
+    "example:build": "vuepress build example"
   },
   "keywords": [
     "vuepress",
