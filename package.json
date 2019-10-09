@@ -16,5 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "vuepress": "^1.1.0"
+  },
+  "dependencies": {
+    "@britecore/bc-design-system": "^2.2.2"
   }
 }
