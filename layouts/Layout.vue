@@ -121,3 +121,9 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus">
+code {
+  text-shadow: none;
+}
+</style>

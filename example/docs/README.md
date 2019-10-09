@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://v1.vuepress.vuejs.org/hero.png
+heroImage: https://www.celent.com/system/companies/logos/710/697/859/large/902617703.png?1530560704
 tagline: 
 actionText: Quick Start →
 actionLink: /guide/
