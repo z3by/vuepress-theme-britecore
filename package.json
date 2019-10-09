@@ -1,0 +1,19 @@
+{
+  "name": "vuepress-bc-theme",
+  "version": "1.0.0",
+  "description": "Vuepress docs theme using BriteCore Design System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Ahmad Mostafa",
+    "url": "https://ahmadmostafa.com/",
+    "email": "zoaby.am@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.1.0"
+  }
+}
