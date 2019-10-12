@@ -1,11 +1,11 @@
 {
   "name": "vuepress-theme-britecore",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vuepress docs theme using BriteCore Design System",
   "main": "index.js",
   "files": [
     "index.js",
-    "enhancedAppFile.js",
+    "enhanceAppFile.js",
     "noopModule.js",
     "styles",
     "util",
