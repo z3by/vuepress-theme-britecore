@@ -54,8 +54,19 @@ module.exports = {
       "/guide/": [
         {
           title: "Guide",
-          collapsable: false,
-          children: ["", "using-vue"]
+          collapsable: true,
+          children: [
+            "",
+            "using-vue",
+            {
+              title: "Markdown Demos",
+              collapsable: true,
+              children: [
+                "/guide/markdown-demo/demo1.md",
+                "/guide/markdown-demo/demo2.md"
+              ]
+            }
+          ]
         }
       ]
     }
