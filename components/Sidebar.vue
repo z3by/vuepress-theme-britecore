@@ -1,9 +1,11 @@
 <template>
   <aside class="sidebar">
-    <NavLinks />
-    <slot name="top" />
-    <SidebarLinks :depth="0" :items="items" />
-    <slot name="bottom" />
+    <el-menu default-active="1" class="no-border">
+      <NavLinks />
+      <slot name="top" />
+      <SidebarLinks :depth="0" :items="items" />
+      <slot name="bottom" />
+    </el-menu>
   </aside>
 </template>
 
@@ -22,18 +24,18 @@ export default {
 
 <style lang="stylus">
 .sidebar {
-  background: linear-gradient(#042C33, #043F4A);
-  color: white;
-
   ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
   }
 
+  .no-border {
+    border: none;
+  }
+
   a {
     display: inline-block;
-    color: white;
   }
 
   .nav-links {
