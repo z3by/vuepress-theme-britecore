@@ -122,7 +122,6 @@ export default {
   .nav-item {
     position: relative;
     display: inline-block;
-
   }
 
   .repo-link {
@@ -142,7 +141,7 @@ export default {
   .nav-links a {
     &:hover, &.router-link-active {
       color: $textColor;
-      text-decoration none;
+      text-decoration: none;
     }
   }
 }

@@ -23,18 +23,20 @@
         'max-width': linksWrapMaxWidth + 'px'
       } : {}"
     >
-      <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
-      <SearchBox
-        v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
-      />
       <NavLinks class="can-hide" />
+      <div class="search-box-wrapper">
+        <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+        <SearchBox
+          v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+        />
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 import AlgoliaSearchBox from "@AlgoliaSearchBox";
-import SearchBox from "@SearchBox";
+import SearchBox from "@theme/components/SearchBox.vue";
 import SidebarButton from "@theme/components/SidebarButton.vue";
 import NavLinks from "@theme/components/NavLinks.vue";
 
@@ -123,21 +125,10 @@ $navbar-horizontal-padding = 1.5rem;
     top: $navbar-vertical-padding;
     display: flex;
 
-    .search-box {
+    .search-box-wrapper {
       flex: 0 0 auto;
       align-self: center;
-
-      input {
-        -webkit-appearance: none;
-        border-radius: 4px;
-        border: 1px solid #a1bfc4;
-        box-sizing: border-box;
-        color: #2b4145;
-        display: inline-block;
-        font-size: inherit;
-        outline: none;
-        padding: 0 30px;
-      }
+      margin-left: 1rem;
     }
   }
 }
