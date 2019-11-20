@@ -1,6 +1,6 @@
 # vuepress-theme-britecore
 
-[![NPM version](https://badgen.net/npm/v/vuepress-theme-britecore)](https://npmjs.com/package/vuepress-theme-britecore) [![NPM downloads](https://badgen.net/npm/dm/vuepress-theme-britecore)](https://npmjs.com/package/vuepress-theme-britecore)
+[![NPM version](https://badgen.net/npm/v/vuepress-theme-britecore)](https://npmjs.com/package/vuepress-theme-britecore) [![NPM downloads](https://badgen.net/npm/dt/vuepress-theme-britecore)](https://npmjs.com/package/vuepress-theme-britecore)
 
 ## Sites
 
