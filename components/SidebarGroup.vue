@@ -9,13 +9,37 @@
       `depth-${depth}`
     ]"
   >
-    <el-submenu :index="depth.toString()" @click.native="$emit('toggle')">
-      <template slot="title">
-        <p class="sidebar-heading" :class="{ open }">
-          <span>{{ item.title }}</span>
-        </p>
-      </template>
-    </el-submenu>
+    <router-link
+      v-if="item.path"
+      class="sidebar-heading clickable"
+      :class="{
+        open,
+        'active': isActive($route, item.path)
+      }"
+      :to="item.path"
+      @click.native="$emit('toggle')"
+    >
+      <span>{{ item.title }}</span>
+      <span
+        class="arrow"
+        v-if="collapsable"
+        :class="open ? 'down' : 'right'">
+      </span>
+    </router-link>
+
+    <p
+      v-else
+      class="sidebar-heading"
+      :class="{ open }"
+      @click="$emit('toggle')"
+    >
+      <span>{{ item.title }}</span>
+      <span
+        class="arrow"
+        v-if="collapsable"
+        :class="open ? 'down' : 'right'">
+      </span>
+    </p>
 
     <DropdownTransition>
       <SidebarLinks
@@ -30,100 +54,76 @@
 </template>
 
 <script>
-import { isActive } from "../util";
-import DropdownTransition from "@theme/components/DropdownTransition.vue";
+import { isActive } from '../util'
+import DropdownTransition from '@theme/components/DropdownTransition.vue'
 
 export default {
-  name: "SidebarGroup",
-  props: ["item", "open", "collapsable", "depth"],
+  name: 'SidebarGroup',
+  props: ['item', 'open', 'collapsable', 'depth'],
   components: { DropdownTransition },
   // ref: https://vuejs.org/v2/guide/components-edge-cases.html#Circular-References-Between-Components
-  beforeCreate() {
-    this.$options.components.SidebarLinks = require("./SidebarLinks.vue").default;
+  beforeCreate () {
+    this.$options.components.SidebarLinks = require('./SidebarLinks.vue').default
   },
   methods: { isActive }
-};
+}
 </script>
 
 <style lang="stylus">
-.sidebar-group {
-  &:not(.collapsable) {
-    .sidebar-heading:not(.clickable) {
-      cursor: auto;
-      color: inherit;
-    }
-  }
-
-  .sidebar-heading {
-    font-size: 1.3em;
-    padding-left: 0.35rem;
-
-    &.open {
-      color: $accentColor;
-    }
-  }
-
+.sidebar-group
+  .sidebar-group
+    padding-left 0.5em
+  &:not(.collapsable)
+    .sidebar-heading:not(.clickable)
+      cursor auto
+      color inherit
   // refine styles of nested sidebar groups
-  &.is-sub-group {
-    padding-left: 0;
-
-    .el-submenu__title {
-      height: 2rem;
-    }
-
-    & .sidebar-heading {
-      font-size: 1em;
-      font-weight: 400;
-      padding-left: 0.35rem;
-
-      &.open {
-        font-weight: 500;
-        color: $accentColor;
-      }
-    }
-
-    & > .sidebar-group-items {
-      padding-left: 1rem;
-
-      & > li > .sidebar-link {
+  &.is-sub-group
+    padding-left 0
+    & > .sidebar-heading
+      font-size 0.95em
+      line-height 1.4
+      font-weight normal
+      padding-left 2rem
+      &:not(.clickable)
+        opacity 0.5
+    & > .sidebar-group-items
+      padding-left 1rem
+      & > li > .sidebar-link
         font-size: 0.95em;
-      }
-    }
-  }
-}
+        border-left none
+  &.depth-2
+    & > .sidebar-heading
+      border-left none
 
-.sidebar-heading {
-  color: $textColor;
-  transition: color 0.15s ease;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: bold;
+.sidebar-heading
+  color $textColor
+  transition color .15s ease
+  cursor pointer
+  font-size 1.1em
+  font-weight bold
   // text-transform uppercase
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  border-left: 0.25rem solid transparent;
+  padding 0.35rem 1.5rem 0.35rem 1.25rem
+  width 100%
+  box-sizing border-box
+  margin 0
+  border-left 0.25rem solid transparent
+  &.open, &:hover
+    color inherit
+  .arrow
+    position relative
+    top -0.12em
+    left 0.5em
+  &.clickable
+    &.active
+      font-weight 600
+      color $accentColor
+      border-left-color $accentColor
+    &:hover
+      color $accentColor
 
-  &.open, &:hover {
-    color: inherit;
-  }
-
-  &.clickable {
-    &.active {
-      font-weight: 600;
-      color: $accentColor;
-      border-left-color: $accentColor;
-    }
-
-    &:hover {
-      color: $accentColor;
-    }
-  }
-}
-
-.sidebar-group-items {
-  transition: height 0.1s ease-out;
-  font-size: 0.95em;
-  overflow: hidden;
-}
+.sidebar-group-items
+  transition height .1s ease-out
+  font-size 0.95em
+  overflow hidden
 </style>

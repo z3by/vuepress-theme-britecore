@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="search-wrapper u-px3">
     <el-autocomplete
       v-model="query"
       :fetch-suggestions="querySearchAsync"
-      placeholder="Please input"
+      placeholder="Search"
       @select="handleSelect"
     ></el-autocomplete>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       links: [],
       query: "",
@@ -19,18 +19,7 @@ export default {
     };
   },
   methods: {
-    loadAll() {
-      return [
-        { value: "vue", link: "https://github.com/vuejs/vue" },
-        { value: "element", link: "https://github.com/ElemeFE/element" },
-        { value: "cooking", link: "https://github.com/ElemeFE/cooking" },
-        { value: "mint-ui", link: "https://github.com/ElemeFE/mint-ui" },
-        { value: "vuex", link: "https://github.com/vuejs/vuex" },
-        { value: "vue-router", link: "https://github.com/vuejs/vue-router" },
-        { value: "babel", link: "https://github.com/babel/babel" }
-      ];
-    },
-    getPageLocalePath(page) {
+    getPageLocalePath (page) {
       for (const localePath in this.$site.locales || {}) {
         if (localePath !== "/" && page.path.indexOf(localePath) === 0) {
           return localePath;
@@ -39,7 +28,7 @@ export default {
       return "/";
     },
 
-    isSearchable(page) {
+    isSearchable (page) {
       let searchPaths = SEARCH_PATHS;
 
       // all paths searchables
@@ -58,7 +47,7 @@ export default {
       );
     },
 
-    querySearchAsync(queryString, cb) {
+    querySearchAsync (queryString, cb) {
       if (!queryString) {
         cb([]);
         return;
@@ -103,25 +92,45 @@ export default {
         }
       }
       const cleanRes = res.map(resItem => {
-        return { value: resItem.title, link: resItem.path };
+        let file = resItem.path.slice(1, resItem.path.length - 1)
+          .replace(new RegExp('/', 'g'), ' > ')
+          .replace(new RegExp('#', 'g'), ' > ')
+          .replace(new RegExp('.html', 'g'), '')
+        if (!!file) {
+          file += ' > '
+        }
+        return { value: file + resItem.title, link: resItem.path };
       });
       cb(cleanRes);
     },
-    createFilter(queryString) {
+    createFilter (queryString) {
       return link => {
         return (
           link.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
         );
       };
     },
-    handleSelect(item) {
+    handleSelect (item) {
       this.$router.push(item.link);
     }
-  },
-  mounted() {
-    this.links = this.loadAll();
   }
 };
 </script>
 <style>
+.el-input__inner {
+  height: 2rem !important;
+}
+.search-wrapper input {
+  width: 200px;
+  transition: all 0.5s ease;
+}
+
+.search-wrapper input:focus {
+  width: 600px;
+}
+
+.el-autocomplete-suggestion__wrap,
+.el-autocomplete-suggestion {
+  width: 100%;
+}
 </style>

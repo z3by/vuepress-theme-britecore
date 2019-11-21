@@ -31,11 +31,12 @@ module.exports = {
    */
   theme: require.resolve("../../../"),
   themeConfig: {
-    repo: "",
-    editLinks: false,
-    docsDir: "",
-    editLinkText: "",
-    lastUpdated: false,
+    repo: "https://github.com/z3by/vuepress-theme-britecore",
+    editLinks: true,
+    docsDir: "example/docs",
+    editLinkText: "Edit this page",
+    lastUpdated: true,
+    searchMaxSuggestions: 10,
     nav: [
       {
         text: "Guide",

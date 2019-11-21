@@ -1,14 +1,15 @@
 <template>
-  <main class="page">
-    <slot name="top" />
+  <el-main>
+    <div class="page">
+      <slot name="top" />
+      <Content class="theme-default-content" />
+      <PageEdit />
 
-    <Content class="theme-default-content" />
-    <PageEdit />
+      <PageNav v-bind="{ sidebarItems }" />
 
-    <PageNav v-bind="{ sidebarItems }" />
-
-    <slot name="bottom" />
-  </main>
+      <slot name="bottom" />
+    </div>
+  </el-main>
 </template>
 
 <script>
@@ -28,5 +29,4 @@ export default {
   padding-bottom: 2rem;
   display: block;
 }
-
 </style>
