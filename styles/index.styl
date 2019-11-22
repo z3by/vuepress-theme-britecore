@@ -8,15 +8,6 @@
 html, body {
   padding: 0;
   margin: 0;
-  background-color: #fff;
-}
-
-body {
-  font-family: Effra, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
-  color: $textColor;
 }
 
 .page {
@@ -113,10 +104,11 @@ kbd {
 blockquote {
   font-size: 1rem;
   margin: 1rem 0;
-  background: #eee;
+  background: #e6eeef;
+  border: 1px solid #d0dfe2;
+  border-left: 0.3rem solid $accentColor;
   color: #333;
   position: relative;
-  border-left: 0.3rem solid $accentColor;
   padding: 1.5rem;
 
   & > p {
@@ -144,9 +136,6 @@ strong {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.25;
-
   {$contentClass}:not(.custom) > & {
     margin-top: 0.5rem - $navbarHeight;
     padding-top: ($navbarHeight + 1rem);
@@ -168,17 +157,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 1.875em;
+  font-weight: 400;
+  line-height: 1.1;
+  font-weight: 500;
 }
 
 h2 {
-  font-size: 1.65rem;
-  padding-bottom: 0.3rem;
+  font-size: 1.625em;
   border-bottom: 1px solid $borderColor;
+  font-weight: 400;
 }
 
 h3 {
-  font-size: 1.35rem;
+  font-size: 1.4375em;
 }
 
 a.header-anchor {
@@ -261,3 +253,4 @@ th, td {
 }
 
 @require 'mobile.styl';
+@import '~@britecore/bc-design-system/lib/theme-chalk/index.css';

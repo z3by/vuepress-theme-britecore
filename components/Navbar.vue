@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <el-header class="navbar">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
     <router-link
       :to="$localePath"
@@ -20,7 +20,7 @@
     </router-link>
 
     <div
-      class="links"
+      class="links u-ml-auto"
       :style="linksWrapMaxWidth ? {
         'max-width': linksWrapMaxWidth + 'px'
       } : {}"
@@ -32,7 +32,7 @@
       />
       <SearchBox v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false" />
     </div>
-  </header>
+  </el-header>
 </template>
 
 <script>
@@ -86,19 +86,19 @@ function css (el, property) {
 
 <style lang="stylus">
 $navbar-vertical-padding = 0.7rem;
-$navbar-horizontal-padding = 1.5rem;
 
 .navbar {
-  padding: $navbar-vertical-padding $navbar-horizontal-padding;
-  line-height: $navbarHeight - 1.4rem;
+  padding: $navbar-vertical-padding auto;
+  line-height: $navbarHeight;
+  display: flex;
 
   a, span, img {
     display: inline-block;
   }
 
   .logo {
-    height: $navbarHeight - 1.4rem;
-    min-width: $navbarHeight - 1.4rem;
+    height: $navbarHeight;
+    min-width: $navbarHeight;
     margin-right: 0.8rem;
     vertical-align: top;
   }
@@ -116,9 +116,6 @@ $navbar-horizontal-padding = 1.5rem;
     background-color: white;
     white-space: nowrap;
     font-size: 0.9rem;
-    position: absolute;
-    right: $navbar-horizontal-padding;
-    top: 0;
     display: flex;
     align-items: center;
 
@@ -142,7 +139,6 @@ $navbar-horizontal-padding = 1.5rem;
     }
 
     .site-name {
-      width: calc(100vw - 9.4rem);
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

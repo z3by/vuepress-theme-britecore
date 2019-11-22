@@ -122,8 +122,7 @@ export default {
 
   a {
     line-height: 1.4rem;
-    color: inherit;
-    text-decoration: none !important;
+    color: $textColor;
 
     &:hover, &.router-link-active {
       color: $accentColor;
@@ -138,10 +137,6 @@ export default {
       margin-left: 0;
     }
   }
-
-  .repo-link {
-    margin-left: 1.5rem;
-  }
 }
 
 @media (max-width: $MQMobile) {
@@ -155,7 +150,7 @@ export default {
 @media (min-width: $MQMobile) {
   .nav-links a {
     &:hover, &.router-link-active {
-      color: $textColor;
+      color: $accentColor;
     }
   }
 }

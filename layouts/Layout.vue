@@ -29,7 +29,6 @@ import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
 import { resolveSidebarItems } from "../util";
-import "@britecore/bc-design-system/lib/theme-chalk/index.css";
 
 export default {
   components: { Home, Page, Sidebar, Navbar },

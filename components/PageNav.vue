@@ -10,7 +10,7 @@
       >
         <router-link
           v-if="prev"
-          class="el-button"
+          class="el-button el-button--primary"
           :to="prev.path"
         >← {{ prev.title || prev.path }}</router-link>
       </span>
@@ -20,7 +20,7 @@
         class="next"
       >
         <router-link
-          class="el-button"
+          class="el-button el-button--primary"
           v-if="next"
           :to="next.path"
         >{{ next.title || next.path }} →</router-link>
@@ -118,8 +118,8 @@ function flatten (items, res) {
 
 .page-nav {
   @extend $wrapper;
-  padding-top: 1rem;
-  padding-bottom: 0;
+  padding-bottom: 3rem;
+  padding-top: 0;
 
   a {
     text-decoration: none !important;

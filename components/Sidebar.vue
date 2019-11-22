@@ -1,10 +1,10 @@
 <template>
-  <aside class="sidebar">
+  <el-aside class="sidebar">
     <NavLinks/>
     <slot name="top"/>
     <SidebarLinks :depth="0" :items="items"/>
     <slot name="bottom"/>
-  </aside>
+  </el-aside>
 </template>
 
 <script>

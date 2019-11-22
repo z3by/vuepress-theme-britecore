@@ -1,15 +1,16 @@
 <template>
-  <el-main>
-    <div class="page">
+  <el-container class="page">
+    <el-main>
       <slot name="top" />
       <Content class="theme-default-content" />
+    </el-main>
+    
+    <el-footer>
       <PageEdit />
-
       <PageNav v-bind="{ sidebarItems }" />
-
       <slot name="bottom" />
-    </div>
-  </el-main>
+    </el-footer>
+  </el-container>
 </template>
 
 <script>
@@ -21,16 +22,3 @@ export default {
   props: ['sidebarItems']
 }
 </script>
-
-<style lang="stylus">
-@require '../styles/wrapper.styl';
-
-.page {
-  padding-bottom: 2rem;
-  display: block;
-
-  p {
-    line-height: 1.8;
-  }
-}
-</style>
