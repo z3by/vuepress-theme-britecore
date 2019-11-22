@@ -669,12 +669,14 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@britecore/bc-design-system@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@britecore/bc-design-system/-/bc-design-system-2.2.2.tgz#c55f9a52909a519d280a4ee19c8afd7a70bd766b"
-  integrity sha512-5T/h129l3npVePx5jYaFkA/vVNqU84GSqNpF73QmLezqV3Y5E1GnetbUFKBwg6UvqBzDgmbR0u19qlFxWyTseg==
+"@britecore/bc-design-system@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@britecore/bc-design-system/-/bc-design-system-3.1.0.tgz#4fe388fa240eb3ef770c12f4e15d215ac7c4f0b6"
+  integrity sha512-ssQwI65LpbEn/e+6jVo7pzT2F0XSeJtjdv/ImafAyhucfUwog7NP1unUHVmqsVpiA0y7ezFcxCc68XMIhL6zPA==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.8"
+    "@fortawesome/pro-light-svg-icons" "^5.11.2"
+    "@fortawesome/pro-regular-svg-icons" "^5.11.2"
     "@fortawesome/pro-solid-svg-icons" "^5.5.0"
     "@fortawesome/vue-fontawesome" "^0.1.2"
     async-validator "~1.8.1"
@@ -707,6 +709,20 @@
   version "1.2.25"
   resolved "https://npm.fontawesome.com/0FE1E103-2198-4AA5-AFF5-2E8BA815DF0A/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.25.tgz#24b03391d14f0c6171e8cad7057c687b74049790"
   integrity sha512-MotKnn53JKqbkLQiwcZSBJVYtTgIKFbh7B8+kd05TSnfKYPFmjKKI59o2fpz5t0Hzl35vVGU6+N4twoOpZUrqA==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.25"
+
+"@fortawesome/pro-light-svg-icons@^5.11.2":
+  version "5.11.2"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/5.11.2/pro-light-svg-icons-5.11.2.tgz#61543170feb34e04f4d4bd1843b08bbde6682833"
+  integrity sha512-NzN0K+hnKQ8fw4PLsr7WjLgtlnH1QjD4/N26YVUEMzLZiTgYBiqE7NDlRL6q/xJ9ittCj6PDPNY/IQ0T8XPLiA==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.25"
+
+"@fortawesome/pro-regular-svg-icons@^5.11.2":
+  version "5.11.2"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/5.11.2/pro-regular-svg-icons-5.11.2.tgz#e9185f15555a16748612044211444463c005d97f"
+  integrity sha512-y1WLNjf/AMN+Mh+CojlOoKfk9miKPDB3P3r7cj3WP7yjxmDX09YyYHkxSWP2HOK9xJulmVN36CbNcMVS8Mrqpg==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.25"
 
@@ -945,6 +961,13 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-nprogress/-/plugin-nprogress-1.1.0.tgz#ca7106adc7016ed0d90a22555066c11da597ef59"
   integrity sha512-XhUyAO+mzYFOFupX/pNlPbv0bT596Lk000Q2PhWfRliwUzpUd0/u5Z6B6fasIVj01Yqih/gAGOZpr2ZwSCNJYw==
+  dependencies:
+    nprogress "^0.2.0"
+
+"@vuepress/plugin-nprogress@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vuepress/plugin-nprogress/-/plugin-nprogress-1.2.0.tgz#ff6166946a0b118a39a562acb57983529afce4d2"
+  integrity sha512-0apt3Dp6XVCOkLViX6seKSEJgARihi+pX3/r8j8ndFp9Y+vmgLFZnQnGE5iKNi1ty+A6PZOK0RQcBjwTAU4pAw==
   dependencies:
     nprogress "^0.2.0"
 
