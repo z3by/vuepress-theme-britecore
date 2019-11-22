@@ -96,17 +96,21 @@ $navbar-vertical-padding = 0.7rem;
     display: inline-block;
   }
 
+  .home-link {
+    display: flex;
+    align-items: center;
+  }
+
   .logo {
-    height: $navbarHeight;
-    min-width: $navbarHeight;
-    margin-right: 0.8rem;
-    vertical-align: top;
+    height: 2.2rem;
+    margin-right: 0.4rem;
   }
 
   .site-name {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: $textColor;
+    text-transform: uppercase;
     position: relative;
   }
 

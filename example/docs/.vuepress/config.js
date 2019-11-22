@@ -33,6 +33,7 @@ module.exports = {
   themeConfig: {
     repo: "https://github.com/z3by/vuepress-theme-britecore",
     editLinks: true,
+    logo: "/logo.png",
     docsDir: "example/docs",
     editLinkText: "Edit this page",
     lastUpdated: true,
