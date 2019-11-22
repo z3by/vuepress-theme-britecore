@@ -1,21 +1,28 @@
 <template>
   <div class="search-wrapper u-px3">
     <el-autocomplete
+      ref="searchInput"
+      slot="reference"
       v-model="query"
+      size="small"
       :fetch-suggestions="querySearchAsync"
       placeholder="Search"
       @select="handleSelect"
-    ></el-autocomplete>
+      popper-class="components-search"
+      :trigger-on-focus="false"
+      placement="bottom-end"
+      :debounce="200"
+    >
+    </el-autocomplete>
   </div>
 </template>
 
 <script>
+import { log } from 'util';
 export default {
   data () {
     return {
-      links: [],
       query: "",
-      timeout: null
     };
   },
   methods: {
@@ -49,8 +56,7 @@ export default {
 
     querySearchAsync (queryString, cb) {
       if (!queryString) {
-        cb([]);
-        return;
+        return cb([{ value: 'No Results', link: null }]);
       }
       const query = queryString.trim().toLowerCase();
 
@@ -60,6 +66,7 @@ export default {
       const localePath = this.$localePath;
       const matches = item =>
         item && item.title && item.title.toLowerCase().indexOf(query) > -1;
+
       const res = [];
       for (let i = 0; i < pages.length; i++) {
         if (res.length >= max) break;
@@ -80,6 +87,7 @@ export default {
           for (let j = 0; j < p.headers.length; j++) {
             if (res.length >= max) break;
             const h = p.headers[j];
+
             if (matches(h)) {
               res.push(
                 Object.assign({}, p, {
@@ -92,16 +100,19 @@ export default {
         }
       }
       const cleanRes = res.map(resItem => {
-        let file = resItem.path.slice(1, resItem.path.length - 1)
-          .replace(new RegExp('/', 'g'), ' > ')
-          .replace(new RegExp('#', 'g'), ' > ')
-          .replace(new RegExp('.html', 'g'), '')
-        if (!!file) {
-          file += ' > '
+        let section = resItem.path.slice(1, resItem.path.length).split('/')[0]
+        let value = ''
+        if (section) {
+          value += section + ' > '
         }
-        return { value: file + resItem.title, link: resItem.path };
+        value += resItem.title
+        if (resItem.header) {
+          value += ' > ' + resItem.header.title
+        }
+        return { value: value, link: resItem.path };
       });
       cb(cleanRes);
+
     },
     createFilter (queryString) {
       return link => {
@@ -111,7 +122,11 @@ export default {
       };
     },
     handleSelect (item) {
-      this.$router.push(item.link);
+      if (item.link) {
+        this.$router.push(item.link);
+      } else {
+        this.query = ''
+      }
     }
   }
 };
@@ -121,16 +136,15 @@ export default {
   height: 2rem !important;
 }
 .search-wrapper input {
-  width: 200px;
+  width: 160px;
   transition: all 0.5s ease;
-}
-
-.search-wrapper input:focus {
-  width: 600px;
 }
 
 .el-autocomplete-suggestion__wrap,
 .el-autocomplete-suggestion {
   width: 100%;
+}
+.components-search {
+  width: 450px !important;
 }
 </style>

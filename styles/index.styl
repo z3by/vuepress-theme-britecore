@@ -112,14 +112,27 @@ kbd {
 
 blockquote {
   font-size: 1rem;
-  color: #999;
-  border-left: 0.2rem solid #dfe2e5;
   margin: 1rem 0;
-  padding: 0.25rem 0 0.25rem 1rem;
+  background: #eee;
+  color: #333;
+  position: relative;
+  border-left: 0.3rem solid $accentColor;
+  padding: 1.5rem;
 
   & > p {
     margin: 0;
   }
+}
+
+blockquote::before {
+  font-family: Arial;
+  content: '\201C';
+  color: #78C0A8;
+  position: absolute;
+  font-size: 4em;
+  left: 1rem;
+  top: -0.5rem;
+  display: inline;
 }
 
 ul, ol {

@@ -28,5 +28,9 @@ export default {
 .page {
   padding-bottom: 2rem;
   display: block;
+
+  p {
+    line-height: 1.8;
+  }
 }
 </style>

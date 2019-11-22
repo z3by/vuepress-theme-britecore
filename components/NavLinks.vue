@@ -1,13 +1,14 @@
 <template>
-  <nav
-    class="nav-links"
+  <el-menu
+    class="u-border-0 nav-links"
     v-if="userLinks.length || repoLink"
   >
     <!-- user links -->
-    <div
+    <el-menu-item
       class="nav-item"
       v-for="item in userLinks"
       :key="item.link"
+      :index="item.link"
     >
       <DropdownLink
         v-if="item.type === 'links'"
@@ -17,7 +18,7 @@
         v-else
         :item="item"
       />
-    </div>
+    </el-menu-item>
 
     <!-- repo link -->
     <a
@@ -30,7 +31,7 @@
       {{ repoLabel }}
       <OutboundLink />
     </a>
-  </nav>
+  </el-menu>
 </template>
 
 <script>
@@ -132,8 +133,6 @@ export default {
   .nav-item {
     position: relative;
     display: inline-block;
-    margin-left: 1.5rem;
-    line-height: 2rem;
 
     &:first-child {
       margin-left: 0;
@@ -157,13 +156,6 @@ export default {
   .nav-links a {
     &:hover, &.router-link-active {
       color: $textColor;
-    }
-  }
-
-  .nav-item > a:not(.external) {
-    &:hover, &.router-link-active {
-      margin-bottom: -2px;
-      border-bottom: 2px solid lighten($accentColor, 8%);
     }
   }
 }
