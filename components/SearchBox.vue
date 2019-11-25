@@ -13,6 +13,12 @@
       placement="bottom-end"
       :debounce="200"
     >
+      <fa-icon
+        :icon="['fal', 'search']"
+        slot="suffix"
+        @click="handleIconClick"
+      >
+      </fa-icon>
     </el-autocomplete>
   </div>
 </template>
@@ -146,5 +152,8 @@ export default {
 }
 .components-search {
   width: 450px !important;
+}
+.el-input__suffix {
+  line-height: 2rem;
 }
 </style>

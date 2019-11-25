@@ -41,11 +41,13 @@ module.exports = {
     nav: [
       {
         text: "Guide",
-        link: "/guide/"
+        link: "/guide/",
+        icon: ['fal', 'directions']
       },
       {
         text: "Config",
-        link: "/config/"
+        link: "/config/",
+        icon: ['fal', 'cog']
       },
       {
         text: "VuePress",

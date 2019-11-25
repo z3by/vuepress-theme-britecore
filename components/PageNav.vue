@@ -12,7 +12,12 @@
           v-if="prev"
           class="el-button el-button--primary"
           :to="prev.path"
-        >← {{ prev.title || prev.path }}</router-link>
+        >
+          <fa-icon :icon="['fal' ,'arrow-left']" />
+          <span>
+            {{ prev.title || prev.path }}
+          </span>
+        </router-link>
       </span>
 
       <span
@@ -23,7 +28,12 @@
           class="el-button el-button--primary"
           v-if="next"
           :to="next.path"
-        >{{ next.title || next.path }} →</router-link>
+        >
+          <span>
+            {{ next.title || next.path }}
+          </span>
+          <fa-icon :icon="['fal' ,'arrow-right']" />
+        </router-link>
       </span>
     </p>
   </div>
