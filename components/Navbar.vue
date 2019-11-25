@@ -89,7 +89,6 @@ $navbar-vertical-padding = 0.7rem;
 
 .navbar {
   padding: $navbar-vertical-padding auto;
-  line-height: $navbarHeight;
   display: flex;
 
   a, span, img {
@@ -107,11 +106,9 @@ $navbar-vertical-padding = 0.7rem;
   }
 
   .site-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     color: $textColor;
-    text-transform: uppercase;
-    position: relative;
   }
 
   .links {
