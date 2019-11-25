@@ -19,7 +19,7 @@
         <p class="c-heading__sub">
           {{ data.tagline || $description || 'Welcome to your VuePress site' }}
         </p>
-
+        
         <p
           class="u-mb5"
           v-if="data.actionText && data.actionLink"
@@ -44,8 +44,19 @@
           :xl="6"
           :key="index"
         >
-          <el-card class="u-m3" shadow="hover">
-            <h2>{{ feature.title }}</h2>
+          <el-card shadow="never">
+            <div
+              slot="header"
+              class="clearfix"
+            >
+              <span class=" c-heading--bold">{{feature.title}}</span>
+              <router-link
+                class="u-float-right el-button--text"
+                :to="feature.link"
+              >
+                Read
+              </router-link>
+            </div>
             <p>{{ feature.details }}</p>
           </el-card>
         </el-col>

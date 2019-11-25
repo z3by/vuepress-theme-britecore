@@ -16,7 +16,6 @@
       <fa-icon
         :icon="['fal', 'search']"
         slot="suffix"
-        @click="handleIconClick"
       >
       </fa-icon>
     </el-autocomplete>

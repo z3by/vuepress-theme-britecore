@@ -1,5 +1,5 @@
 <template>
-  <el-aside class="sidebar u-p3">
+  <el-aside class="sidebar u-p3" width="22rem">
     <NavLinks />
     <slot name="top" />
     <el-tree
