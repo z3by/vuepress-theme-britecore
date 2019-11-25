@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-britecore",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Vuepress docs theme using BriteCore Design System",
   "main": "index.js",
   "files": [
