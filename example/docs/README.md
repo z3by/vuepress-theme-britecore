@@ -7,12 +7,12 @@ actionLink: /guide/
 features:
 - title: Feature 1 Title
   details: Feature 1 Description
-  link: /feature1/
+  link: /guide/
 - title: Feature 2 Title
   details: Feature 2 Description
-  link: /feature2/
+  link: /guide/
 - title: Feature 3 Title
   details: Feature 3 Description
-  link: /feature3/
+  link: /guide/
 footer: Made by  with ❤️
 ---

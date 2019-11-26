@@ -5,15 +5,11 @@
   >
     <!-- user links -->
     <el-menu-item
-      class="nav-item"
+      class="nav-item u-px2"
       v-for="item in userLinks"
       :key="item.link"
       :index="item.link"
     >
-      <fa-icon
-        v-if="item.icon"
-        :icon="item.icon"
-      ></fa-icon>
       <DropdownLink
         v-if="item.type === 'links'"
         :item="item"
