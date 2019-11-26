@@ -1,36 +1,39 @@
 <template>
-  <el-container align="center">
+  <el-container
+    align="center"
+    class="u-mt5"
+  >
+    <div class="hero u-p3">
+      <img
+        v-if="data.heroImage"
+        :src="$withBase(data.heroImage)"
+        :alt="data.heroAlt || 'hero'"
+        class="u-width100"
+      >
+      <h1
+        v-if="data.heroText !== null"
+        class="c-heading__page"
+        id="main-title"
+      >{{ data.heroText || $title || 'Hello' }}</h1>
+
+      <p class="c-heading__sub">
+        {{ data.tagline || $description || 'Welcome to your VuePress site' }}
+      </p>
+
+      <p
+        class="u-mb5"
+        v-if="data.actionText && data.actionLink"
+      >
+        <NavLink
+          class="el-button el-button--primary"
+          :item="actionLink"
+        />
+      </p>
+    </div>
     <el-main
       class="home"
       aria-labelledby="main-title"
     >
-      <header class="hero">
-        <img
-          v-if="data.heroImage"
-          :src="$withBase(data.heroImage)"
-          :alt="data.heroAlt || 'hero'"
-        >
-        <h1
-          v-if="data.heroText !== null"
-          class="c-heading__page"
-          id="main-title"
-        >{{ data.heroText || $title || 'Hello' }}</h1>
-
-        <p class="c-heading__sub">
-          {{ data.tagline || $description || 'Welcome to your VuePress site' }}
-        </p>
-        
-        <p
-          class="u-mb5"
-          v-if="data.actionText && data.actionLink"
-        >
-          <NavLink
-            class="el-button el-button--primary"
-            :item="actionLink"
-          />
-        </p>
-      </header>
-
       <el-row
         class="features"
         v-if="data.features && data.features.length"
@@ -44,7 +47,7 @@
           :xl="6"
           :key="index"
         >
-          <el-card shadow="never">
+          <el-card shadow="never" class="u-m2">
             <div
               slot="header"
               class="clearfix"
@@ -94,3 +97,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+.hero img {
+  max-width 40rem; 
+}
+</style>
