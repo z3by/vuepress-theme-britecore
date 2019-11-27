@@ -9,6 +9,11 @@
 - [Live Example](https://vp-britecore.z3by.com/) - clone this repo and run `yarn && yarn example:dev`
 
 
+## Features
+- auto populate sidebar
+- clean design
+- Element UI support
+
 ## Install
 > NOTE: this theme requires a pro subscription of [fontawesome](http://fontawesome.com/)
 
