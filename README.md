@@ -10,6 +10,7 @@
 
 
 ## Install
+> NOTE: this theme requires a pro subscription of [fontawesome](http://fontawesome.com/)
 
 ```bash
 yarn add vuepress-theme-britecore -D
