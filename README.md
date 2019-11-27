@@ -1,6 +1,7 @@
 # vuepress-theme-britecore
 
 [![NPM version](https://badgen.net/npm/v/vuepress-theme-britecore)](https://npmjs.com/package/vuepress-theme-britecore) [![NPM downloads](https://badgen.net/npm/dt/vuepress-theme-britecore)](https://npmjs.com/package/vuepress-theme-britecore)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f3e7e71b-6d24-4878-9527-256d4f42011b/deploy-status)](https://app.netlify.com/sites/vp-britecore/deploys)
 
 ## Sites
 
