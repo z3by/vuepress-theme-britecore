@@ -60,9 +60,6 @@ export default {
     },
 
     querySearchAsync (queryString, cb) {
-      if (!queryString) {
-        return cb([{ value: 'No Results', link: null }]);
-      }
       const query = queryString.trim().toLowerCase();
 
       const { pages } = this.$site;
@@ -116,7 +113,16 @@ export default {
         }
         return { value: value, link: resItem.path };
       });
-      cb(cleanRes);
+      if (!cleanRes.length) {
+        if (this.$site.themeConfig.googleCustomSearchEngineID && this.$site.themeConfig.googleAPIKey) {
+          cb([{ value: `Search the entire site for "${query}"`, link: `/search?q=${query}` }]);
+        } else {
+          cb([{ value: `No results! Try something else.`, link: `#` }]);
+        }
+      }
+      else {
+        cb(cleanRes);
+      }
 
     },
     createFilter (queryString) {
@@ -129,6 +135,7 @@ export default {
     handleSelect (item) {
       if (item.link) {
         this.$router.push(item.link);
+        this.query = ''
       } else {
         this.query = ''
       }

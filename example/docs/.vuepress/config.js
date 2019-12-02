@@ -37,6 +37,8 @@ module.exports = {
     docsDir: "example/docs",
     editLinkText: "Edit this page",
     lastUpdated: true,
+    googleCustomSearchEngineID: process.env.GOOGLE_CUSTOM_SEARCH_ENGINE_ID,
+    googleAPIKey: process.env.GOOGLE_API_KEY,
     searchMaxSuggestions: 10,
     nav: [
       {

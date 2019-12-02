@@ -33,6 +33,7 @@
     "vuepress": "^1.1.0"
   },
   "dependencies": {
-    "@britecore/bc-design-system": "^3.1.0"
+    "@britecore/bc-design-system": "^3.1.0",
+    "axios": "^0.19.0"
   }
 }
