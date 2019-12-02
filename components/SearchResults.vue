@@ -5,8 +5,11 @@
     </el-header>
     <el-main>
       <div class="search-results u-mx-auto">
-        <h1 class="c-heading__page">Search Results for <span class=" u-text--info">"{{query}}"</span></h1>
-        <div class="u-py2">
+        <div
+          class="u-py2"
+          v-if="searchResults.length"
+        >
+          <h1 class="c-heading__page">Search Results for <span class=" u-text--info">"{{query}}"</span></h1>
           <el-card
             shadow="hover"
             v-for="result in searchResults"
@@ -28,6 +31,27 @@
               class="c-heading__text u-text--light"
             ></p>
           </el-card>
+        </div>
+        <div
+          v-else
+          class=" u-text--center u-py4"
+        >
+          <img
+            src="../assets/img/no-data.svg"
+            alt="not found"
+            height="300px"
+          >
+          <h1 class="u-text--light-gray c-heading__main">No Results</h1>
+
+          <div class="u-py4">
+            <router-link
+              to="/"
+              class="el-button el-button--primary"
+            >
+              Back Home
+            </router-link>
+          </div>
+
         </div>
       </div>
     </el-main>
@@ -67,6 +91,8 @@ export default {
         } else {
           this.searchResults = []
         }
+      }).catch(err => {
+        this.searchResults = []
       })
     }
   },
