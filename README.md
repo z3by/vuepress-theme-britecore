@@ -18,6 +18,7 @@
 > NOTE: this theme requires a pro subscription of [fontawesome](http://fontawesome.com/)
 
 ```bash
+export FONT_AWESOME_TOKEN=<Your FontAwesome auth token>
 yarn add vuepress-theme-britecore -D
 # OR npm install vuepress-theme-britecore -D
 ```
