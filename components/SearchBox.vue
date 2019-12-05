@@ -63,8 +63,6 @@ export default {
           encode: 'extra'
         },
         (result) => {
-          console.log(result);
-
           if (result.length) {
             const resolvedResult = result.map(page => {
               return {
