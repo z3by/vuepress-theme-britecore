@@ -25,5 +25,5 @@ export default ({
   Vue.use(BcDesignSystem);
   Vue.component('fa-icon', FontAwesomeIcon)
   
-  router.addRoutes(extraRoutes)
+  router.addRoutes(extraRoutes)  
 };

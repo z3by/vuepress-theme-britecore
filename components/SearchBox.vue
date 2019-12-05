@@ -16,128 +16,92 @@
       <fa-icon
         :icon="['fal', 'search']"
         slot="suffix"
-      >
-      </fa-icon>
+      > </fa-icon>
     </el-autocomplete>
   </div>
 </template>
 
 <script>
-import { log } from 'util';
+import Flexsearch from "flexsearch";
+
 export default {
   data () {
     return {
-      query: "",
+      index: null,
+      query: ""
     };
   },
+  mounted () {
+    this.index = new Flexsearch({
+      tokenize: "forward",
+      doc: {
+        id: "key",
+        field: ["title", "content"]
+      }
+    });
+    const { pages } = this.$site;
+
+    this.index.add(pages);
+
+  },
   methods: {
-    getPageLocalePath (page) {
-      for (const localePath in this.$site.locales || {}) {
-        if (localePath !== "/" && page.path.indexOf(localePath) === 0) {
-          return localePath;
-        }
-      }
-      return "/";
-    },
-
-    isSearchable (page) {
-      let searchPaths = SEARCH_PATHS;
-
-      // all paths searchables
-      if (searchPaths === null) {
-        return true;
-      }
-
-      searchPaths = Array.isArray(searchPaths)
-        ? searchPaths
-        : new Array(searchPaths);
-
-      return (
-        searchPaths.filter(path => {
-          return page.path.match(path);
-        }).length > 0
-      );
-    },
-
     querySearchAsync (queryString, cb) {
+      const { pages, themeConfig } = this.$site;
       const query = queryString.trim().toLowerCase();
+      const usingGoogleSearch =
+        themeConfig.googleCustomSearchEngineID && themeConfig.googleAPIKey;
+      const max = themeConfig.searchMaxSuggestions || 10;
 
-      const { pages } = this.$site;
-      const max =
-        this.$site.themeConfig.searchMaxSuggestions || SEARCH_MAX_SUGGESTIONS;
-      const localePath = this.$localePath;
-      const matches = item =>
-        item && item.title && item.title.toLowerCase().indexOf(query) > -1;
-
-      const res = [];
-      for (let i = 0; i < pages.length; i++) {
-        if (res.length >= max) break;
-        const p = pages[i];
-        // filter out results that do not match current locale
-        if (this.getPageLocalePath(p) !== localePath) {
-          continue;
-        }
-
-        // filter out results that do not match searchable paths
-        if (!this.isSearchable(p)) {
-          continue;
-        }
-
-        if (matches(p)) {
-          res.push(p);
-        } else if (p.headers) {
-          for (let j = 0; j < p.headers.length; j++) {
-            if (res.length >= max) break;
-            const h = p.headers[j];
-
-            if (matches(h)) {
-              res.push(
-                Object.assign({}, p, {
-                  path: p.path + "#" + h.slug,
-                  header: h
-                })
-              );
+      if (this.index === null || query.length < 3) {
+        return cb([]);
+      }
+      this.index.search(
+        query,
+        {
+          limit: max,
+          threshold: 2
+        },
+        (result) => {
+          if (result.length) {
+            const resolvedResult = result.map(page => {
+              return {
+                link: page.path,
+                value: this.getQuerySnippet(page)
+              };
+            });
+            return cb(resolvedResult);
+          } else {
+            if (usingGoogleSearch) {
+              return cb([
+                {
+                  value: `Search the entire site for "${query}"`,
+                  link: `/search?q=${query}`
+                }
+              ]);
+            } else {
+              cb([{ value: `No results! Try something else.`, link: `#` }]);
             }
           }
         }
-      }
-      const cleanRes = res.map(resItem => {
-        let section = resItem.path.slice(1, resItem.path.length).split('/')[0]
-        let value = ''
-        if (section) {
-          value += section + ' > '
-        }
-        value += resItem.title
-        if (resItem.header) {
-          value += ' > ' + resItem.header.title
-        }
-        return { value: value, link: resItem.path };
-      });
-      if (!cleanRes.length) {
-        if (this.$site.themeConfig.googleCustomSearchEngineID && this.$site.themeConfig.googleAPIKey) {
-          cb([{ value: `Search the entire site for "${query}"`, link: `/search?q=${query}` }]);
-        } else {
-          cb([{ value: `No results! Try something else.`, link: `#` }]);
-        }
-      }
-      else {
-        cb(cleanRes);
-      }
+      );
+    },
 
+    getQuerySnippet (page) {
+      const queryPosition = page.content.indexOf(this.query)
+      const querySnippet = page.content.slice(queryPosition - 30, queryPosition + 40).split(' ').slice(1, -1).join(' ')
+      if (querySnippet) {
+        return `${page.title} > ..${querySnippet}..`.replace(/\|/g, ' ')
+      } else {
+        return page.title
+      }
     },
-    createFilter (queryString) {
-      return link => {
-        return (
-          link.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-        );
-      };
-    },
+
     handleSelect (item) {
       if (item.link) {
         this.$router.push(item.link);
-        this.query = ''
+        this.query = "";
       } else {
-        this.query = ''
+        this.query = "";
       }
     }
   }
@@ -157,7 +121,7 @@ export default {
   width: 100%;
 }
 .components-search {
-  width: 450px !important;
+  width: 600px !important;
 }
 .el-input__suffix {
   line-height: 2rem;
