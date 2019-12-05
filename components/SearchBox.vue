@@ -59,9 +59,12 @@ export default {
         query,
         {
           limit: max,
-          threshold: 2
+          threshold: 2,
+          encode: 'extra'
         },
         (result) => {
+          console.log(result);
+
           if (result.length) {
             const resolvedResult = result.map(page => {
               return {
@@ -87,8 +90,11 @@ export default {
     },
 
     getQuerySnippet (page) {
-      const queryPosition = page.content.indexOf(this.query)
-      const querySnippet = page.content.slice(queryPosition - 30, queryPosition + 40).split(' ').slice(1, -1).join(' ')
+      const queryPosition = page.content.toLowerCase().indexOf(this.query)
+      const startIndex = queryPosition - 30 < 0 ? 0 :queryPosition - 30
+      const endIndex = queryPosition + 40
+      const querySnippet = page.content.slice(startIndex, endIndex).split(' ').slice(1, -1).join(' ')
+      
       if (querySnippet) {
         return `${page.title} > ..${querySnippet}..`.replace(/\|/g, ' ')
       } else {
