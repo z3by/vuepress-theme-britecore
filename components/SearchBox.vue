@@ -96,7 +96,7 @@ export default {
       const querySnippet = page.content.slice(startIndex, endIndex).split(' ').slice(1, -1).join(' ')
       
       if (querySnippet) {
-        return `${page.title} > ..${querySnippet}..`.replace(/\|/g, ' ')
+        return `${page.title} > ..${querySnippet}..`.replace(/\|/g, ' ').replace(/:::/g, ' ')
       } else {
         return page.title
       }
