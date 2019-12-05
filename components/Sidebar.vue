@@ -1,12 +1,17 @@
 <template>
-  <el-aside class="sidebar u-p3" width="22rem">
+  <el-aside
+    class="sidebar u-pl1"
+    width="22rem"
+  >
     <NavLinks />
     <slot name="top" />
     <el-tree
       :data="items"
       default-expand-all
       :props="defaultProps"
-      accordion
+      node-key="title"
+
+      highlight-current
       @node-click="handleNodeClick"
     >
     </el-tree>
@@ -28,7 +33,8 @@ export default {
     return {
       defaultProps: {
         children: 'children',
-        label: 'title'
+        label: 'title',
+        isLeaf: 'collapsable'
       }
     }
   },
@@ -67,7 +73,7 @@ export default {
       display: block;
       line-height: 1.25rem;
       font-size: 1.1em;
-      padding: 0.5rem 0 0.5rem 1.5rem;
+      padding: 0.5rem;
     }
   }
 
