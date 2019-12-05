@@ -10,7 +10,6 @@
 
 
 ## Features
-- auto populate sidebar
 - clean design
 - Element UI support
 
