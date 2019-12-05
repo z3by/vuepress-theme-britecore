@@ -8,6 +8,7 @@
     "assets",
     "enhanceAppFile.js",
     "noopModule.js",
+    "search.js",
     "styles",
     "util",
     "layouts",
