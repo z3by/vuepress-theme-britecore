@@ -1,5 +1,5 @@
 <template>
-  <el-header class="navbar">
+  <el-header class="navbar u-border-b">
     <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
     <router-link
       :to="$localePath"

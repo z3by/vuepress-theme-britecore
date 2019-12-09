@@ -2,7 +2,7 @@
   <el-container class="page">
     <el-main>
       <slot name="top" />
-      <Content class="theme-default-content" />
+      <Content class="theme-default-content dialog-fade-in" />
     </el-main>
     
     <el-footer>
@@ -22,3 +22,9 @@ export default {
   props: ['sidebarItems']
 }
 </script>
+
+<style lang="stylus">
+.dialog-fade-in {
+  animation: dialog-fade-in 0.3s ease;
+}
+</style>

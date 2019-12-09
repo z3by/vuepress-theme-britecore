@@ -1,6 +1,6 @@
 <template>
   <el-aside
-    class="sidebar u-pl1"
+    class="sidebar u-pl1 u-py3"
     width="22rem"
   >
     <NavLinks />
@@ -10,7 +10,6 @@
       default-expand-all
       :props="defaultProps"
       node-key="title"
-
       highlight-current
       @node-click="handleNodeClick"
     >

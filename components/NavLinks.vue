@@ -9,6 +9,7 @@
       v-for="item in userLinks"
       :key="item.link"
       :index="item.link"
+      @click="$router.push(item.link)"
     >
       <DropdownLink
         v-if="item.type === 'links'"
