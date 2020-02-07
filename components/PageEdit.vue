@@ -2,20 +2,8 @@
   <div class="page-edit u-px0 u-mb5 u-mt3 wrapper">
     <el-card
       shadow="never"
-      class="u-text--center"
     >
-      <h3>
-        Was this page helpful?
-      </h3>
-
       <div class="u-py3">
-        <a
-          class="u-link"
-          @click="feedbackDialogVisible = true"
-        >
-          Submit a feedback
-        </a>
-        <span class="u-px3"> or </span>
         <a
           v-if="editLink"
           :href="editLink"
@@ -28,31 +16,6 @@
         </a>
       </div>
     </el-card>
-    <el-dialog
-      title="How was this page?"
-      :visible.sync="feedbackDialogVisible"
-      height="400"
-      width="70%"
-      show-close
-      class="feedback-dialog"
-    >
-
-      <el-loading-wrapper
-        tag="div"
-        class="loading-wrapper"
-        :loading="feedbackFormIsLoading"
-        loading-text="Loading..."
-      >
-        <iframe
-          src="https://forms.monday.com/forms/embed/396d479fb99e2ae71c252b89554c8021"
-          frameborder="0"
-          class="u-width100"
-          height="500px"
-          @load="feedbackFormLoaded"
-        ></iframe>
-      </el-loading-wrapper>
-
-    </el-dialog>
   </div>
 </template>
 
@@ -61,13 +24,6 @@ import { endingSlashRE, outboundRE } from '../util'
 
 export default {
   name: 'PageEdit',
-
-  data () {
-    return {
-      feedbackDialogVisible: false,
-      feedbackFormIsLoading: true
-    }
-  },
 
   computed: {
     editLink () {
@@ -128,10 +84,6 @@ export default {
         + path
       )
     },
-
-    feedbackFormLoaded() {
-      this.feedbackFormIsLoading = false
-    }
   }
 }
 </script>
