@@ -35,9 +35,12 @@
     "vuepress": "^1.1.0"
   },
   "dependencies": {
-    "@britecore/bc-design-system": "^3.1.0",
+    "@britecore/bc-design-system": "3.6.5",
+    "@vuepress/plugin-pwa": "^1.2.0",
     "axios": "^0.19.0",
     "flexsearch": "^0.6.32",
-    "remove-markdown": "^0.3.0"
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "vue-markdown": "^2.2.4"
   }
 }

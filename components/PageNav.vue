@@ -1,41 +1,29 @@
 <template>
   <div
-    class="page-nav"
+    class="page-nav u-px0 wrapper u-pb5 l-flex-grid--no-wrap l-flex-grid--h-space-between"
     v-if="prev || next"
   >
-    <p class="inner">
-      <span
-        v-if="prev"
-        class="prev"
-      >
-        <router-link
-          v-if="prev"
-          class="el-button el-button--primary"
-          :to="prev.path"
-        >
-          <fa-icon :icon="['fal' ,'arrow-left']" />
-          <span>
-            {{ prev.title || prev.path }}
-          </span>
-        </router-link>
+    <router-link
+      v-if="prev"
+      class="el-button--text el-button--small"
+      :to="prev.path"
+    >
+      <fa-icon :icon="['fal' ,'chevron-left']" />
+      <span class="u-px2">
+        {{ prev.title }}
       </span>
+    </router-link>
 
-      <span
-        v-if="next"
-        class="next"
-      >
-        <router-link
-          class="el-button el-button--primary"
-          v-if="next"
-          :to="next.path"
-        >
-          <span>
-            {{ next.title || next.path }}
-          </span>
-          <fa-icon :icon="['fal' ,'arrow-right']" />
-        </router-link>
+    <router-link
+      class="el-button--text el-button--small"
+      v-if="next"
+      :to="next.path"
+    >
+      <span class="u-px2">
+        {{ next.title }}
       </span>
-    </p>
+      <fa-icon :icon="['fal' ,'chevron-right']" />
+    </router-link>
   </div>
 </template>
 <script>
@@ -45,7 +33,9 @@ import isNil from 'lodash/isNil'
 
 export default {
   name: 'PageNav',
+
   props: ['sidebarItems'],
+
   computed: {
     prev () {
       return resolvePageLink(LINK_TYPES.PREV, this)
@@ -53,6 +43,16 @@ export default {
 
     next () {
       return resolvePageLink(LINK_TYPES.NEXT, this)
+    }
+  },
+
+  filters: {
+    trim (text) {
+      if (text.length > 30) {
+        return text.substr(0, 30) + '..'
+      } else {
+        return text
+      }
     }
   }
 }
@@ -123,28 +123,3 @@ function flatten (items, res) {
   }
 }
 </script>
-<style lang="stylus">
-@require '../styles/wrapper.styl';
-
-.page-nav {
-  @extend $wrapper;
-  padding-bottom: 3rem;
-  padding-top: 0;
-
-  a {
-    text-decoration: none !important;
-  }
-
-  .inner {
-    min-height: 2rem;
-    margin-top: 0;
-    border-top: 1px solid $borderColor;
-    padding-top: 1rem;
-    overflow: auto; // clear float
-  }
-
-  .next {
-    float: right;
-  }
-}
-</style>

@@ -1,16 +1,17 @@
 <template>
-  <router-link
-    class="nav-link"
+  <span
     :to="link"
     v-if="!isExternal(link)"
-    :exact="exact"
   >
     <fa-icon
       v-if="item.icon"
-      :icon="item.icon" />
-      
-    {{ item.text }}
-  </router-link>
+      :icon="item.icon"
+    />
+    <span class="u-text--bold">
+      {{ item.text }}
+    </span>
+  </span>
+
   <a
     v-else
     :href="link"
@@ -18,7 +19,9 @@
     :target="isMailto(link) || isTel(link) ? null : '_blank'"
     :rel="isMailto(link) || isTel(link) ? null : 'noopener noreferrer'"
   >
-    {{ item.text }}
+    <span>
+      {{ item.text }}
+    </span>
     <OutboundLink />
   </a>
 </template>

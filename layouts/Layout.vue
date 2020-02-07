@@ -1,5 +1,5 @@
 <template>
-  <div
+  <el-container
     class="theme-container"
     :class="pageClasses"
     @touchstart="onTouchStart"
@@ -8,43 +8,24 @@
     <Navbar
       v-if="shouldShowNavbar"
       @toggle-sidebar="toggleSidebar"
+      :showSidebarToggler="!!shouldShowSidebar"
+      :isSidebarOpen="isSidebarOpen"
     />
 
-    <div
-      class="sidebar-mask"
-      @click="toggleSidebar(false)"
-    ></div>
-
     <Sidebar
+      v-if="!!shouldShowSidebar"
       :items="sidebarItems"
+      :isSidebarOpen="isSidebarOpen"
       @toggle-sidebar="toggleSidebar"
-    >
-      <slot
-        name="sidebar-top"
-        slot="top"
-      />
-      <slot
-        name="sidebar-bottom"
-        slot="bottom"
-      />
-    </Sidebar>
+    />
 
     <Home v-if="$page.frontmatter.home" />
 
     <Page
       v-else
       :sidebar-items="sidebarItems"
-    >
-      <slot
-        name="page-top"
-        slot="top"
-      />
-      <slot
-        name="page-bottom"
-        slot="bottom"
-      />
-    </Page>
-  </div>
+    />
+  </el-container>
 </template>
 
 <script>
@@ -53,6 +34,8 @@ import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
 import { resolveSidebarItems } from "../util";
+import '../styles/index.scss'
+import '@britecore/bc-design-system/packages/theme-chalk/src/common/var.scss';
 
 export default {
   components: { Home, Page, Sidebar, Navbar },
@@ -144,9 +127,3 @@ export default {
   }
 };
 </script>
-
-<style lang="stylus">
-code {
-  text-shadow: none;
-}
-</style>

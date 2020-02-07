@@ -1,36 +1,75 @@
 <template>
-  <footer class="page-edit">
-    <div class="edit-link" v-if="editLink">
-      <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
-      <OutboundLink />
-    </div>
+  <div class="page-edit u-px0 u-mb5 u-mt3 wrapper">
+    <el-card
+      shadow="never"
+      class="u-text--center"
+    >
+      <h3>
+        Was this page helpful?
+      </h3>
 
-    <div class="last-updated" v-if="lastUpdated">
-      <span class="prefix">{{ lastUpdatedText }}:</span>
-      <span class="time">{{ lastUpdated }}</span>
-    </div>
-  </footer>
+      <div class="u-py3">
+        <a
+          class="u-link"
+          @click="feedbackDialogVisible = true"
+        >
+          Submit a feedback
+        </a>
+        <span class="u-px3"> or </span>
+        <a
+          v-if="editLink"
+          :href="editLink"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="u-link u-pr3"
+        >
+          {{ editLinkText }}
+          <OutboundLink />
+        </a>
+      </div>
+    </el-card>
+    <el-dialog
+      title="How was this page?"
+      :visible.sync="feedbackDialogVisible"
+      height="400"
+      width="70%"
+      show-close
+      class="feedback-dialog"
+    >
+
+      <el-loading-wrapper
+        tag="div"
+        class="loading-wrapper"
+        :loading="feedbackFormIsLoading"
+        loading-text="Loading..."
+      >
+        <iframe
+          src="https://forms.monday.com/forms/embed/396d479fb99e2ae71c252b89554c8021"
+          frameborder="0"
+          class="u-width100"
+          height="500px"
+          @load="feedbackFormLoaded"
+        ></iframe>
+      </el-loading-wrapper>
+
+    </el-dialog>
+  </div>
 </template>
+
 <script>
 import { endingSlashRE, outboundRE } from '../util'
 
 export default {
   name: 'PageEdit',
+
+  data () {
+    return {
+      feedbackDialogVisible: false,
+      feedbackFormIsLoading: true
+    }
+  },
+
   computed: {
-    lastUpdated () {
-      return this.$page.lastUpdated
-    },
-
-    lastUpdatedText () {
-      if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
-        return this.$themeLocaleConfig.lastUpdated
-      }
-      if (typeof this.$site.themeConfig.lastUpdated === 'string') {
-        return this.$site.themeConfig.lastUpdated
-      }
-      return 'Last Updated'
-    },
-
     editLink () {
       if (this.$page.frontmatter.editLink === false) {
         return
@@ -88,55 +127,11 @@ export default {
         + (docsDir ? docsDir.replace(endingSlashRE, '') + '/' : '')
         + path
       )
+    },
+
+    feedbackFormLoaded() {
+      this.feedbackFormIsLoading = false
     }
   }
 }
 </script>
-<style lang="stylus">
-@require '../styles/wrapper.styl';
-
-.page-edit {
-  @extend $wrapper;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  overflow: auto;
-
-  .edit-link {
-    display: inline-block;
-
-    a {
-      color: lighten($textColor, 25%);
-      margin-right: 0.25rem;
-    }
-  }
-
-  .last-updated {
-    float: right;
-    font-size: 0.9em;
-
-    .prefix {
-      font-weight: 500;
-      color: lighten($textColor, 25%);
-    }
-
-    .time {
-      font-weight: 400;
-      color: #aaa;
-    }
-  }
-}
-
-@media (max-width: $MQMobile) {
-  .page-edit {
-    .edit-link {
-      margin-bottom: 0.5rem;
-    }
-
-    .last-updated {
-      font-size: 0.8em;
-      float: none;
-      text-align: left;
-    }
-  }
-}
-</style>

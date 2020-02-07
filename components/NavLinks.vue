@@ -1,47 +1,40 @@
 <template>
   <el-menu
-    class="u-border-0 nav-links"
+    :mode="mode || 'horizontal'"
     v-if="userLinks.length || repoLink"
+    :default-active="activeIndex"
+    router
+    active-text-color="#08859b"
   >
     <!-- user links -->
     <el-menu-item
-      class="nav-item u-px2"
-      v-for="item in userLinks"
+      class="u-px2"
+      v-for="(item) in userLinks"
       :key="item.link"
       :index="item.link"
-      @click="$router.push(item.link)"
     >
-      <DropdownLink
-        v-if="item.type === 'links'"
-        :item="item"
-      />
       <NavLink
-        v-else
         :item="item"
+        :repoLink="repoLink"
       />
     </el-menu-item>
-
-    <!-- repo link -->
-    <a
-      v-if="repoLink"
-      :href="repoLink"
-      class="repo-link"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {{ repoLabel }}
-      <OutboundLink />
-    </a>
   </el-menu>
 </template>
 
 <script>
-import DropdownLink from '@theme/components/DropdownLink.vue'
 import { resolveNavLinkItem } from '../util'
 import NavLink from '@theme/components/NavLink.vue'
 
 export default {
-  components: { NavLink, DropdownLink },
+  props: ['mode'],
+
+  components: { NavLink },
+
+  data () {
+    return {
+      activeIndex: ''
+    }
+  },
 
   computed: {
     userNav () {
@@ -110,49 +103,17 @@ export default {
           return platform
         }
       }
-
       return 'Source'
+    }
+  },
+
+  mounted () {
+    let pathItems = this.$route.path.split('/').filter(item => !!item)
+    if (!pathItems.length) {
+      this.activeIndex = '/'
+    } else {
+      this.activeIndex = `/${pathItems[0]}/`
     }
   }
 }
 </script>
-
-<style lang="stylus">
-.nav-links {
-  display: inline-block;
-
-  a {
-    line-height: 1.4rem;
-    color: $textColor;
-
-    &:hover, &.router-link-active {
-      color: $accentColor;
-    }
-  }
-
-  .nav-item {
-    position: relative;
-    display: inline-block;
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-}
-
-@media (max-width: $MQMobile) {
-  .nav-links {
-    .nav-item, .repo-link {
-      margin-left: 0;
-    }
-  }
-}
-
-@media (min-width: $MQMobile) {
-  .nav-links a {
-    &:hover, &.router-link-active {
-      color: $accentColor;
-    }
-  }
-}
-</style>

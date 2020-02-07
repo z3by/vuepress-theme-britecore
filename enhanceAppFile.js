@@ -5,6 +5,7 @@ import { far } from '@fortawesome/pro-regular-svg-icons'
 import { fas } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import SearchResults from './components/SearchResults.vue'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 
 library.add(fal)
 library.add(fas)
@@ -24,6 +25,6 @@ export default ({
 }) => {
   Vue.use(BcDesignSystem);
   Vue.component('fa-icon', FontAwesomeIcon)
-  
-  router.addRoutes(extraRoutes)  
+
+  router.addRoutes(extraRoutes)
 };

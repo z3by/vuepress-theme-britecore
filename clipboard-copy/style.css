@@ -1,0 +1,23 @@
+.code-copy {
+  display: inline-block;
+  cursor: pointer;
+}
+
+div[class*="language-"] pre .code-copy {
+  position: absolute;
+  z-index: 1000;
+  top: .6rem;
+  right: 2rem;
+  width: 1.5rem;
+  content: url('./copy.svg');
+  opacity: 0;
+}
+
+div[class*="language-"] pre:hover .code-copy {
+  opacity: 1;
+}
+
+.content pre,
+.content pre[class*=language-] {
+  overflow-y: hidden;
+}

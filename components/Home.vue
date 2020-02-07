@@ -8,7 +8,7 @@
         v-if="data.heroImage"
         :src="$withBase(data.heroImage)"
         :alt="data.heroAlt || 'hero'"
-        class="u-width100"
+        class="u-p5 u-width100"
       >
       <h1
         v-if="data.heroText !== null"
@@ -21,13 +21,16 @@
       </p>
 
       <p
-        class="u-mb5"
+        class="u-mb3"
         v-if="data.actionText && data.actionLink"
       >
-        <NavLink
-          class="el-button el-button--primary"
-          :item="actionLink"
-        />
+        <bc-button-link
+          :to="data.actionLink"
+          type="primary"
+          size="medium"
+        >
+          {{data.actionText}}
+        </bc-button-link>
       </p>
     </div>
     <el-main
@@ -35,7 +38,7 @@
       aria-labelledby="main-title"
     >
       <el-row
-        class="features"
+        class="features l-flex-grid l-flex-grid--h-center"
         v-if="data.features && data.features.length"
         :gutter="10"
       >
@@ -47,12 +50,15 @@
           :xl="6"
           :key="index"
         >
-          <el-card shadow="never" class="u-m2">
+          <el-card
+            shadow="never"
+            class="u-m2"
+          >
             <div
               slot="header"
               class="clearfix"
             >
-              <span class=" c-heading--bold">{{feature.title}}</span>
+              <span class="c-heading--bold">{{feature.title}}</span>
               <router-link
                 class="u-float-right el-button--text"
                 :to="feature.link"
@@ -98,8 +104,8 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
 .hero img {
-  max-width 40rem; 
+  max-width: 25rem;
 }
 </style>

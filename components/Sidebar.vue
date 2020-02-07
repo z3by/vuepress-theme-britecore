@@ -1,32 +1,43 @@
 <template>
   <el-aside
-    class="sidebar u-pl1 u-py3"
-    width="22rem"
+    class="sidebar u-pl1 u-border-r u-overflow--scroll"
+    :class="{'sidebar-open': isSidebarOpen}"
+    width="25rem"
   >
-    <NavLinks />
-    <slot name="top" />
-    <el-tree
-      :data="items"
-      default-expand-all
-      :props="defaultProps"
-      node-key="title"
-      highlight-current
-      @node-click="handleNodeClick"
+    <h2 class=" u-ml2 u-p3 c-heading__title">
+      {{$page.title}}
+    </h2>
+    <NavLinks
+      mode="vertical"
+      class="u-hidden-lg sidebar-navlinks u-border-b"
+    />
+    <el-menu
+      :default-active="activeKey"
+      :default-openeds="activeSubmenus"
+      background-color="transparent"
+      ref="sidebar-menu"
+      router
+      class="u-border-0"
     >
-    </el-tree>
-    <slot name="bottom" />
+      <sidebar-menu-items :items="items" />
+    </el-menu>
   </el-aside>
 </template>
 
 <script>
-import NavLinks from '@theme/components/NavLinks.vue'
+import NavLinks from './NavLinks.vue'
 
 export default {
-  name: 'Sidebar',
+  name: 'sidebar',
 
-  components: { NavLinks },
+  components: {
+    NavLinks
+  },
 
-  props: ['items'],
+  props: [
+    'isSidebarOpen',
+    'items'
+  ],
 
   data () {
     return {
@@ -34,76 +45,40 @@ export default {
         children: 'children',
         label: 'title',
         isLeaf: 'collapsable'
-      }
+      },
+      activeKey: '',
+      activeSubmenus: []
     }
   },
-  methods: {
-    handleNodeClick (node) {
-      if (node.path && this.$route.path != node.path) {
-        this.$router.push(node.path)
-      }
-    }
+
+  mounted () {
+    this.activeKey = this.$page.path
   }
+
 }
 </script>
 
-<style lang="stylus">
+<style lang="scss">
+@import "@britecore/bc-design-system/packages/theme-chalk/src/common/var.scss";
+
 .sidebar {
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
+  background-color: $color-gray--000;
+  position: fixed;
+  z-index: 10;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+
+
+  &.sidebar-open {
+    transform: translateX(0);
   }
 
-  a {
-    display: inline-block;
-  }
-
-  .nav-links {
-    display: none;
-    border-bottom: 1px solid $borderColor;
-    padding: 0.5rem 0 0.75rem 0;
-
-    a {
-      font-weight: 600;
-    }
-
-    .nav-item, .repo-link {
-      display: block;
-      line-height: 1.25rem;
-      font-size: 1.1em;
-      padding: 0.5rem;
-    }
-  }
-
-  & > .sidebar-links {
-    padding: 1.5rem 0;
-
-    & > li > a.sidebar-link {
-      font-size: 1.1em;
-      line-height: 1.7;
-      font-weight: bold;
-    }
-
-    & > li:not(:first-child) {
-      margin-top: 0.75rem;
-    }
-  }
-}
-
-@media (max-width: $MQMobile) {
-  .sidebar {
-    .nav-links {
-      display: block;
-
-      .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after {
-        top: calc(1rem - 2px);
-      }
-    }
-
-    & > .sidebar-links {
-      padding: 1rem 0;
-    }
+  @media (max-width: $screen-lg) {
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
   }
 }
 </style>

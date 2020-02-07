@@ -243,3 +243,33 @@ function resolveItem (item, pages, base, groupDepth = 1) {
     }
   }
 }
+
+
+export function getQuerySnippet (page, query) {
+  const queryWords = query.toLowerCase().split(' ').filter((v, i, a) => v && a.indexOf(v) === i)
+  let queryPosition;
+  for (const word of queryWords) {
+    const wordIndex = page.content.toLowerCase().indexOf(word)
+    if (wordIndex !== -1) {
+      queryPosition = wordIndex
+      break
+    }
+  }
+  queryPosition = queryPosition - 20 < 0 ? 0 : queryPosition - 20
+  const startIndex = queryPosition - 50 < 0 ? 0 : queryPosition - 50
+  const endIndex = queryPosition + 100
+
+  let querySnippet = page.content.slice(startIndex, endIndex)
+    .toLowerCase()
+    .replace(/[\W_]+/g, " ");
+
+
+  if (querySnippet) {
+    for (const word of queryWords) {
+      querySnippet = querySnippet.replace(word, `<strong class="u-text--primary">${word}</strong>`)
+    }
+    return `<strong>${page.title}</strong> > <p class="u-m0 u-text--light"> ${querySnippet}..</p>`
+  } else {
+    return page.title
+  }
+}

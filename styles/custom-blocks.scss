@@ -1,0 +1,51 @@
+@import '~@britecore/bc-design-system/packages/theme-chalk/src/common/var.scss';
+
+
+.custom-block {
+  .custom-block-title {
+    font-weight: 600;
+    margin-bottom: -0.4rem;
+  }
+
+  &.tip,
+  &.warning,
+  &.danger {
+    padding: 0.1rem 1.5rem;
+    border-left-width: 0.5rem;
+    border-left-style: solid;
+    margin: 1rem 0;
+  }
+
+  &.tip {
+    background-color: $--color-success-light;
+    border-color: $--color-success;
+  }
+
+  &.warning {
+    background-color: $--color-warning-light;
+    border-color: $--color-warning;
+    color: $--color-warning;
+
+    .custom-block-title {
+      color: $--color-warning;
+    }
+
+    a {
+      color: $textColor;
+    }
+  }
+
+  &.danger {
+    background-color: $--color-danger-light;
+    border-color: $--color-danger;
+    color: $--color-danger;
+
+    .custom-block-title {
+      color: $--color-danger;
+    }
+
+    a {
+      color: $textColor;
+    }
+  }
+}

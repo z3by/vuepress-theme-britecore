@@ -1,23 +1,9 @@
 const path = require("path");
 
-// Theme API.
-module.exports = (options, ctx) => ({
-  alias () {
-    const { themeConfig, siteConfig } = ctx;
-    // resolve algolia
-    const isAlgoliaSearch =
-      themeConfig.algolia ||
-      Object.keys((siteConfig.locales && themeConfig.locales) || {}).some(
-        base => themeConfig.locales[base].algolia
-      );
-    return {
-      "@AlgoliaSearchBox": isAlgoliaSearch
-        ? path.resolve(__dirname, "components/AlgoliaSearchBox.vue")
-        : path.resolve(__dirname, "noopModule.js")
-    };
-  },
+module.exports = (options) => ({
 
   plugins: [
+    [require.resolve('./clipboard-copy/clipboard-copy')],
     ["@vuepress/active-header-links", options.activeHeaderLinks],
     ["@vuepress/plugin-nprogress"],
     [path.resolve(__dirname, 'search.js')],
@@ -26,7 +12,7 @@ module.exports = (options, ctx) => ({
       {
         type: "tip",
         defaultTitle: {
-          "/zh/": "提示"
+          "/en/": "tip"
         }
       }
     ],
@@ -35,7 +21,7 @@ module.exports = (options, ctx) => ({
       {
         type: "warning",
         defaultTitle: {
-          "/zh/": "注意"
+          "/en/": "warning"
         }
       }
     ],
@@ -44,7 +30,7 @@ module.exports = (options, ctx) => ({
       {
         type: "danger",
         defaultTitle: {
-          "/zh/": "警告"
+          "/en/": "danger"
         }
       }
     ]

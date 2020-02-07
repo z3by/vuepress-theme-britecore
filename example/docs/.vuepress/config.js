@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: "Vuepress Docs Boilerplate",
+  title: "BriteCore Docs Boilerplate",
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -36,9 +36,6 @@ module.exports = {
     logo: "/logo.png",
     docsDir: "example/docs",
     editLinkText: "Edit this page",
-    lastUpdated: true,
-    googleCustomSearchEngineID: process.env.GOOGLE_CUSTOM_SEARCH_ENGINE_ID,
-    googleAPIKey: process.env.GOOGLE_API_KEY,
     searchMaxSuggestions: 10,
     nav: [
       {
@@ -50,10 +47,6 @@ module.exports = {
         text: "Config",
         link: "/config/",
         icon: ['fal', 'cog']
-      },
-      {
-        text: "VuePress",
-        link: "https://v1.vuepress.vuejs.org"
       }
     ],
     sidebar: {
